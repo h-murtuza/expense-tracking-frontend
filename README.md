@@ -1,353 +1,397 @@
 # Expense Tracking Frontend
 
-Modern, responsive Next.js frontend for the Expense Tracking application with Redux state management and Material-UI components.
+A modern, responsive web application for expense tracking and management, built with Next.js, React, TypeScript, and Material-UI.
 
 ## 🚀 Features
 
-- Server-side rendering with Next.js 16
-- Redux Toolkit for state management with persistence
-- Material-UI for beautiful, accessible components
-- Interactive charts for analytics visualization
-- Role-based UI components
-- Form validation with React Hook Form
-- Responsive design for mobile and desktop
-- JWT authentication flow
+- **User Authentication**
+  - Secure login and registration
+  - JWT-based authentication with persistent sessions
+  - Role-based UI rendering (Admin & Employee)
 
-## 🛠 Tech Stack
+- **Expense Management**
+  - Create new expenses with detailed information
+  - View and filter personal expenses
+  - Real-time form validation
+  - Category-based organization
+  - Date range filtering
 
-- **Framework**: Next.js 16 (App Router)
+- **Admin Dashboard**
+  - Approve or reject pending expenses
+  - View all system expenses
+  - Employee directory and management
+  - Comprehensive analytics and reporting
+
+- **Analytics & Insights**
+  - Interactive charts and graphs (Recharts)
+  - Category-wise expense breakdown
+  - Status-based statistics
+  - Monthly trends and patterns
+
+- **Modern UI/UX**
+  - Clean, professional design
+  - Fully responsive (mobile, tablet, desktop)
+  - Gradient themes and smooth animations
+  - Intuitive navigation with sidebar
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16.0 (App Router)
 - **UI Library**: React 19
 - **Language**: TypeScript
-- **State Management**: Redux Toolkit + Redux Persist
-- **UI Components**: Material-UI (MUI)
+- **State Management**: Redux Toolkit with Redux Persist
+- **UI Components**: Material-UI (MUI) v7
 - **Charts**: Recharts
 - **Forms**: React Hook Form
 - **HTTP Client**: Axios
-- **Date Handling**: Day.js
+- **Icons**: Material Icons
+- **Testing**: Jest, React Testing Library
 
 ## 📋 Prerequisites
 
+Before you begin, ensure you have the following installed:
+
 - Node.js (v18 or higher)
 - npm or yarn
-- Running backend API (see backend README)
+- Backend API running (see backend README)
 
-## 🔧 Installation
+## 📦 Installation
 
-1. **Install dependencies**
-\`\`\`bash
-npm install
-\`\`\`
+1. **Navigate to frontend directory**
+   ```bash
+   cd expense-tracking-frontend
+   ```
 
-2. **Set up environment variables (optional)**
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Create `.env.local` if you need to customize the API URL:
-\`\`\`env
-NEXT_PUBLIC_API_URL=http://localhost:3001/api
-\`\`\`
+3. **Configure environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   # API Configuration
+   NEXT_PUBLIC_API_URL=http://localhost:3001/api
+   ```
 
-Default API URL is `http://localhost:3001/api`
+   **Environment Variables Explained:**
+   - `NEXT_PUBLIC_API_URL`: Backend API base URL (default: http://localhost:3001/api)
 
 ## 🚀 Running the Application
 
 ### Development Mode
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
-
+```
 The application will be available at `http://localhost:3000`
 
 ### Production Build
-\`\`\`bash
+```bash
+# Build the application
 npm run build
-npm start
-\`\`\`
 
-## 👥 Test Credentials
+# Start the production server
+npm run start
+```
 
-Use these credentials to test different user roles:
+### Linting
+```bash
+# Check for linting errors
+npm run lint
 
-### Admin Account
-- **Email**: admin@example.com
-- **Password**: admin123
-- **Features**: Full access including approval queue
-
-### Employee Accounts
-- **Email**: john.doe@example.com
-- **Password**: employee123
-- **Features**: Submit and view own expenses
-
-- **Email**: jane.smith@example.com
-- **Password**: employee123
-
-## 📱 Application Pages
-
-### Public Pages
-- `/` - Home (redirects to login)
-- `/login` - User login
-- `/register` - User registration
-
-### Protected Pages (Requires Authentication)
-- `/dashboard` - Analytics dashboard with charts
-- `/expenses` - Expense list with filtering
-
-### Admin Only Pages
-- `/admin/approvals` - Approval queue for pending expenses
-
-## 🎨 Key Components
-
-### Layout Components
-- **AppLayout**: Main application layout with navigation
-- **Providers**: Redux and MUI theme providers
-
-### Authentication
-- **LoginPage**: User login with validation
-- **RegisterPage**: New user registration
-
-### Analytics
-- **AnalyticsDashboard**: 
-  - Summary cards (total expenses, total amount, pending, approved)
-  - Bar chart for expenses by category
-  - Pie chart for status distribution
-
-### Expenses
-- **ExpenseList**:
-  - Filterable table of expenses
-  - Filters by category, status, and date range
-  - Responsive design
-- **ExpenseForm**:
-  - Modal form for creating expenses
-  - Field validation
-  - Category selection
-
-### Admin
-- **ApprovalQueue**:
-  - Table of pending expenses
-  - Approve/reject actions
-  - Rejection reason dialog
-
-## 🗂 Project Structure
-
-\`\`\`
-app/
-├── login/
-│   └── page.tsx              # Login page
-├── register/
-│   └── page.tsx              # Registration page
-├── dashboard/
-│   └── page.tsx              # Analytics dashboard
-├── expenses/
-│   └── page.tsx              # Expense list
-├── admin/
-│   └── approvals/
-│       └── page.tsx          # Admin approval queue
-├── layout.tsx                # Root layout
-├── page.tsx                  # Home (redirects to login)
-└── globals.css               # Global styles
-
-components/
-├── layout/
-│   └── AppLayout.tsx         # Main app layout
-├── analytics/
-│   └── AnalyticsDashboard.tsx # Analytics component
-├── expenses/
-│   ├── ExpenseForm.tsx       # Expense creation form
-│   └── ExpenseList.tsx       # Expense list with filters
-└── admin/
-    └── ApprovalQueue.tsx     # Admin approval interface
-
-lib/
-├── api/
-│   ├── axios.ts              # Axios instance with interceptors
-│   ├── auth.api.ts           # Auth API calls
-│   └── expenses.api.ts       # Expense API calls
-├── store/
-│   ├── index.ts              # Redux store configuration
-│   ├── hooks.ts              # Typed Redux hooks
-│   └── slices/
-│       ├── authSlice.ts      # Auth state management
-│       └── expensesSlice.ts  # Expenses state management
-├── types/
-│   └── index.ts              # TypeScript interfaces
-└── providers/
-    └── Providers.tsx         # App providers (Redux, MUI)
-\`\`\`
-
-## 🔄 State Management
-
-### Auth Slice
-- User authentication state
-- Login/logout actions
-- Token management
-- Persistent storage
-
-### Expenses Slice
-- Expense list
-- Pending expenses (admin)
-- Analytics data
-- Filters
-- Create/update actions
-
-## 🎨 UI/UX Features
-
-### Material-UI Theme
-- Custom color palette
-- Responsive breakpoints
-- Consistent typography
-- Global CSS baseline
-
-### Responsive Design
-- Mobile-first approach
-- Adaptive layouts
-- Touch-friendly interfaces
-- Collapsible filters on mobile
-
-### User Experience
-- Loading states with spinners
-- Error handling with alerts
-- Form validation feedback
-- Success confirmations
-- Keyboard navigation
-
-## 🔐 Authentication Flow
-
-1. User enters credentials on login page
-2. Frontend sends request to `/api/auth/login`
-3. Backend validates and returns JWT token + user data
-4. Token stored in localStorage and Redux
-5. Axios interceptor adds token to all subsequent requests
-6. Protected routes check authentication state
-7. Auto-redirect to login if token expires
-
-## 📊 Analytics Features
-
-### Summary Cards
-- Total number of expenses
-- Total amount spent
-- Pending expense count
-- Approved expense count
-
-### Charts
-- **Bar Chart**: Expenses by category
-- **Pie Chart**: Status distribution
-- Interactive tooltips
-- Responsive sizing
-
-## 🔍 Filtering System
-
-### Available Filters
-- **Category**: Filter by expense type
-- **Status**: Filter by approval status
-- **Date Range**: Start and end dates
-- Combined filters support
-
-### Filter Behavior
-- Real-time filter application
-- URL query parameter sync (optional enhancement)
-- Clear all filters option
-- Persistent filter state in Redux
-
-## 🛡️ Role-Based Access
-
-### Employee View
-- Create expenses
-- View own expenses
-- Filter and search
-- View personal analytics
-
-### Admin View
-- All employee features
-- View all team expenses
-- Approval queue access
-- Team-wide analytics
-- Approve/reject capabilities
+# Fix linting errors
+npm run lint -- --fix
+```
 
 ## 🧪 Testing
 
-\`\`\`bash
-# Run tests
-npm run test
+```bash
+# Run all tests
+npm test
 
 # Run tests in watch mode
 npm run test:watch
-\`\`\`
 
-## 📦 Building for Production
+# Generate coverage report
+npm run test:coverage
+```
 
-\`\`\`bash
-# Create optimized production build
-npm run build
+## 🎨 Application Structure
 
-# Start production server
-npm start
-\`\`\`
+```
+expense-tracking-frontend/
+├── app/                           # Next.js App Router
+│   ├── layout.tsx                 # Root layout
+│   ├── page.tsx                   # Home page
+│   ├── login/                     # Login page
+│   ├── register/                  # Registration page
+│   ├── dashboard/                 # Dashboard page
+│   ├── expenses/                  # Expenses page
+│   └── admin/                     # Admin pages
+│       ├── approvals/             # Expense approvals
+│       └── employees/             # Employee management
+│
+├── components/                    # React components
+│   ├── layout/                    # Layout components
+│   │   └── AppLayout.tsx          # Main app layout with sidebar
+│   ├── analytics/                 # Analytics components
+│   │   └── AnalyticsDashboard.tsx # Charts and stats
+│   ├── expenses/                  # Expense components
+│   │   ├── ExpenseList.tsx        # Expense table with filters
+│   │   └── ExpenseForm.tsx        # Create expense form
+│   └── admin/                     # Admin components
+│       ├── ApprovalList.tsx       # Pending approvals
+│       └── EmployeeList.tsx       # Employee directory
+│
+├── lib/                           # Utilities and configurations
+│   ├── store/                     # Redux store
+│   │   ├── store.ts               # Store configuration
+│   │   └── slices/                # Redux slices
+│   │       ├── authSlice.ts       # Authentication state
+│   │       └── expensesSlice.ts   # Expenses state
+│   ├── api/                       # API integration
+│   │   ├── axios.ts               # Axios instance
+│   │   ├── auth.api.ts            # Auth endpoints
+│   │   ├── expenses.api.ts        # Expense endpoints
+│   │   └── users.api.ts           # User endpoints
+│   ├── types/                     # TypeScript types
+│   │   └── index.ts               # Shared types
+│   └── providers/                 # React providers
+│       └── Providers.tsx          # Redux & MUI providers
+│
+├── public/                        # Static files
+├── .env.local                     # Environment variables (not in git)
+├── jest.config.js                 # Jest configuration
+├── jest.setup.js                  # Jest setup file
+├── next.config.js                 # Next.js configuration
+├── package.json                   # Dependencies and scripts
+└── tsconfig.json                  # TypeScript configuration
+```
 
-## 🚀 Deployment
+## 📱 Pages & Routes
 
-### Recommended Platform: Vercel
+### Public Routes
+- `/` - Landing/Home page
+- `/login` - User login
+- `/register` - User registration
 
-1. **Connect Repository**
-\`\`\`bash
-vercel
-\`\`\`
+### Protected Routes (Employee & Admin)
+- `/dashboard` - Analytics dashboard
+- `/expenses` - Expense management
 
-2. **Set Environment Variables**
-- `NEXT_PUBLIC_API_URL`: Your production API URL
+### Admin-Only Routes
+- `/admin/approvals` - Expense approvals
+- `/admin/employees` - Employee directory
 
-3. **Deploy**
-\`\`\`bash
-vercel --prod
-\`\`\`
+## 🎯 Key Features Breakdown
 
-### Other Platforms
-- **Netlify**: Configure build command as `npm run build`
-- **AWS Amplify**: Connect Git repository
-- **Azure Static Web Apps**: Deploy via GitHub Actions
+### Authentication
+- **Login**: Email/password authentication with JWT
+- **Register**: New user registration with role selection
+- **Session Persistence**: Redux Persist keeps user logged in
+- **Protected Routes**: Automatic redirect to login if unauthenticated
 
-## 🎯 Performance Optimization
+### Expense Management
+- **Create**: Add new expenses with category, amount, date, and description
+- **Filter**: Filter by category, status, and date range
+- **Quick Status Filters**: One-click filtering (All, Pending, Approved, Rejected)
+- **Validation**: Real-time form validation with error messages
 
-- Server-side rendering for initial load
-- Code splitting with Next.js
-- Lazy loading of components
-- Optimized images
-- Cached API responses
-- Minimal bundle size
+### Admin Features
+- **Approvals**: View and approve/reject pending expenses
+- **Rejection Reason**: Add reason when rejecting expenses
+- **Employee Directory**: View all users with roles and status
+- **Analytics**: System-wide expense analytics
 
-## 🔧 Development Tools
+### Dashboard Analytics
+- **Summary Cards**: Total expenses, amounts, and counts
+- **Category Chart**: Pie chart showing category distribution
+- **Trend Chart**: Line chart showing expense trends
+- **Status Breakdown**: Bar chart for expense status
 
-### Code Quality
-- ESLint for linting
-- TypeScript for type safety
-- Prettier for formatting (optional)
+## 🎨 UI Components
 
-### Browser DevTools
-- Redux DevTools for state inspection
-- React DevTools for component debugging
+### Layout
+- **Sidebar Navigation**: Fixed left sidebar with menu items
+- **Responsive Design**: Mobile drawer, desktop permanent sidebar
+- **User Profile**: User info and logout in sidebar
 
-## 📝 Best Practices
+### Forms
+- **React Hook Form**: Form state management and validation
+- **Material-UI Fields**: Styled input components
+- **Date Pickers**: Date selection for expenses
+- **Dropdowns**: Category and status selection
 
-- TypeScript strict mode enabled
-- Component modularity
-- Custom hooks for reusability
-- Consistent naming conventions
-- Error boundary implementation
-- Accessibility considerations
+### Tables
+- **Data Grid**: Sortable, filterable tables
+- **Pagination**: Handle large datasets
+- **Row Actions**: Inline actions (approve, reject, view)
+
+### Charts
+- **Recharts Integration**: Interactive, responsive charts
+- **Pie Charts**: Category distribution
+- **Bar Charts**: Status breakdown
+- **Line Charts**: Trend analysis
+
+## 🔐 Authentication Flow
+
+1. User logs in with email/password
+2. Backend validates credentials and returns JWT token
+3. Frontend stores token in localStorage
+4. Redux Persist keeps authentication state
+5. Axios interceptor adds token to all requests
+6. Protected routes check authentication state
+7. Role-based rendering for admin features
+
+## 🎨 Theme & Styling
+
+- **Material-UI Theme**: Custom theme with gradients
+- **Color Palette**: Purple/violet primary colors
+- **Typography**: Modern font stack with consistent sizing
+- **Shadows & Effects**: Subtle elevation and transitions
+- **Responsive**: Mobile-first approach with breakpoints
+
+## 🧪 Testing Strategy
+
+### Unit Tests
+- Redux slices (actions, reducers, thunks)
+- Utility functions
+- Form validation
+
+### Integration Tests
+- API integration
+- Component rendering
+- User interactions
+
+### Component Tests
+- Form submissions
+- Button clicks
+- Navigation
+
+## 📊 State Management
+
+### Redux Store Structure
+```typescript
+{
+  auth: {
+    user: User | null,
+    token: string | null,
+    isAuthenticated: boolean,
+    isLoading: boolean,
+    error: string | null
+  },
+  expenses: {
+    expenses: Expense[],
+    pendingExpenses: Expense[],
+    analytics: Analytics | null,
+    filters: ExpenseFilters,
+    isLoading: boolean,
+    error: string | null
+  }
+}
+```
+
+### Async Thunks
+- `login()` - User authentication
+- `register()` - User registration
+- `fetchExpenses()` - Get expenses with filters
+- `createExpense()` - Create new expense
+- `updateExpenseStatus()` - Approve/reject expense
+- `fetchPendingExpenses()` - Get pending expenses (admin)
+- `fetchAnalytics()` - Get analytics data
+
+## 🌐 API Integration
+
+All API calls are made through dedicated API service files:
+
+```typescript
+// Authentication
+authApi.login(credentials)
+authApi.register(userData)
+
+// Expenses
+expensesApi.getAll(filters)
+expensesApi.create(expense)
+expensesApi.getById(id)
+expensesApi.updateStatus(id, status)
+expensesApi.getPending()
+expensesApi.getAnalytics()
+
+// Users
+usersApi.getAllUsers()
+```
+
+## 🔧 Configuration
+
+### Axios Configuration
+- Base URL from environment variable
+- Automatic token injection
+- Error response handling
+- Request/response interceptors
+
+### Next.js Configuration
+- TypeScript enabled
+- Path aliases configured (@/)
+- Image optimization
+- Turbopack for faster builds
+
+## 🎨 Design Patterns
+
+- **Container/Presenter**: Separate logic from UI
+- **Custom Hooks**: Reusable logic extraction
+- **Type Safety**: Full TypeScript coverage
+- **Error Boundaries**: Graceful error handling
+- **Code Splitting**: Route-based code splitting
+
+## 🚀 Performance Optimization
+
+- **Next.js SSR**: Server-side rendering for better SEO
+- **Code Splitting**: Automatic route-based splitting
+- **Image Optimization**: Next.js Image component
+- **Lazy Loading**: Dynamic imports for heavy components
+- **Redux Persist**: Reduced API calls with cached state
+
+## 🐛 Common Issues & Troubleshooting
+
+### Build Errors
+```bash
+Error: Cannot find module '@mui/material/Grid2'
+```
+**Solution:** The app uses CSS Grid instead of MUI Grid2 for better compatibility
+
+### Hydration Warnings
+```bash
+Warning: Text content did not match
+```
+**Solution:** `suppressHydrationWarning` is added to layout components
+
+### API Connection Error
+```bash
+Error: Network Error
+```
+**Solution:** Ensure backend is running and `NEXT_PUBLIC_API_URL` is correct
+
+## 📝 Development Guidelines
+
+1. **Code Style**: Follow React and Next.js best practices
+2. **TypeScript**: Use strong typing, avoid `any`
+3. **Components**: Keep components small and focused
+4. **Testing**: Write tests for all new features
+5. **Commits**: Use conventional commit messages
 
 ## 🤝 Contributing
 
-When contributing to the frontend:
-1. Follow the existing component structure
-2. Use TypeScript types consistently
-3. Test across different screen sizes
-4. Ensure accessibility standards
-5. Update this README for new features
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT License
+This project is licensed under the MIT License.
 
-## 🙏 Acknowledgments
+## 🔗 Related Projects
 
-- Next.js team for the amazing framework
-- Material-UI for the component library
-- Redux team for state management tools
-- Recharts for beautiful charts
+- [Backend Repository](../expense-tracking-backend)

@@ -30,6 +30,7 @@ import {
   Logout,
   Menu as MenuIcon,
   TrendingUp,
+  People,
 } from '@mui/icons-material';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
@@ -76,7 +77,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
     { title: 'Dashboard', icon: Dashboard, path: '/dashboard' },
     { title: 'Expenses', icon: Receipt, path: '/expenses' },
     ...(user?.role === 'admin'
-      ? [{ title: 'Approvals', icon: CheckCircle, path: '/admin/approvals' }]
+      ? [
+          { title: 'Approvals', icon: CheckCircle, path: '/admin/approvals' },
+          { title: 'Employees', icon: People, path: '/admin/employees' },
+        ]
       : []),
   ];
 
