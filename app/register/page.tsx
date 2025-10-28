@@ -12,8 +12,6 @@ import {
   Alert,
   Link,
   CircularProgress,
-  Grid,
-  Stack,
   Divider,
   InputAdornment,
   IconButton,
@@ -60,6 +58,7 @@ export default function RegisterPage() {
   }, [dispatch]);
 
   const onSubmit = async (data: RegisterDto & { confirmPassword: string }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { confirmPassword, ...registerData } = data;
     await dispatch(registerAction(registerData));
   };
@@ -115,46 +114,49 @@ export default function RegisterPage() {
           )}
 
           <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2.5}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="First Name"
-                  autoFocus
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Person color="action" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  {...register('firstName', {
-                    required: 'First name is required',
-                  })}
-                  error={!!errors.firstName}
-                  helperText={errors.firstName?.message}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Last Name"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Person color="action" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  {...register('lastName', {
-                    required: 'Last name is required',
-                  })}
-                  error={!!errors.lastName}
-                  helperText={errors.lastName?.message}
-                />
-              </Grid>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                gap: 2.5,
+              }}
+            >
+              <TextField
+                fullWidth
+                label="First Name"
+                autoFocus
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person color="action" />
+                    </InputAdornment>
+                  ),
+                }}
+                {...register('firstName', {
+                  required: 'First name is required',
+                })}
+                error={!!errors.firstName}
+                helperText={errors.firstName?.message}
+              />
 
-              <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Last Name"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person color="action" />
+                    </InputAdornment>
+                  ),
+                }}
+                {...register('lastName', {
+                  required: 'Last name is required',
+                })}
+                error={!!errors.lastName}
+                helperText={errors.lastName?.message}
+              />
+
+              <Box sx={{ gridColumn: { xs: '1', sm: '1 / -1' } }}>
                 <TextField
                   fullWidth
                   label="Email Address"
@@ -176,78 +178,74 @@ export default function RegisterPage() {
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Lock color="action" />
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  {...register('password', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 6,
-                      message: 'Password must be at least 6 characters',
-                    },
-                  })}
-                  error={!!errors.password}
-                  helperText={errors.password?.message}
-                />
-              </Grid>
+              <TextField
+                fullWidth
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="new-password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock color="action" />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                })}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+              />
 
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Confirm Password"
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Lock color="action" />
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={() =>
-                            setShowConfirmPassword(!showConfirmPassword)
-                          }
-                          edge="end"
-                        >
-                          {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  {...register('confirmPassword', {
-                    required: 'Please confirm your password',
-                    validate: (value) =>
-                      value === password || 'Passwords do not match',
-                  })}
-                  error={!!errors.confirmPassword}
-                  helperText={errors.confirmPassword?.message}
-                />
-              </Grid>
-            </Grid>
+              <TextField
+                fullWidth
+                label="Confirm Password"
+                type={showConfirmPassword ? 'text' : 'password'}
+                autoComplete="new-password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock color="action" />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
+                        edge="end"
+                      >
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                {...register('confirmPassword', {
+                  required: 'Please confirm your password',
+                  validate: (value) =>
+                    value === password || 'Passwords do not match',
+                })}
+                error={!!errors.confirmPassword}
+                helperText={errors.confirmPassword?.message}
+              />
+            </Box>
 
             <Button
               type="submit"

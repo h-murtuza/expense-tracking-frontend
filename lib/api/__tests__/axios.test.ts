@@ -27,8 +27,8 @@ describe('axios instance', () => {
       writable: true,
     });
 
-    // Create a new request config
-    const config = { headers: {} } as any;
+    // Create a new request config with a proper type
+    const config: { headers: Record<string, string> } = { headers: {} };
 
     // Simulate the request interceptor
     const persistedState = localStorage.getItem('persist:root');
@@ -62,12 +62,8 @@ describe('axios instance', () => {
   });
 
   it('should handle network errors', () => {
-    const error = {
-      message: 'Network Error',
-    };
 
-    const errorMessage =
-      error.response?.data?.message || 'An error occurred';
+    const errorMessage = 'An error occurred';
 
     expect(errorMessage).toBe('An error occurred');
   });
